@@ -30,7 +30,7 @@ require('whereis')('java', function searched(err) {
 
     var bt = new Browsertime(browsers);
 
-    browserListenerProxy.setup(bt, p);
+    browserListenerProxy.setup(bt, p, argv);
 
     bt.fetch(
       argv
