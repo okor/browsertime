@@ -47,7 +47,6 @@ require('whereis')('java', function searched(err) {
         ],
         function (error) {
           if (error) {
-            console.error('Failed to launch proxy: ' + error);
             p.stopProcess();
             process.exit(1);
             throw error;
