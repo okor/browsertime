@@ -52,9 +52,10 @@ require('whereis')('java', function searched(err) {
           if (e) {
             logger.getLog().error(e.message);
           }
-          p.stopProcess(function() {});
 
-          process.exit(e ? 1 : 0);
+          p.stopProcess(function(error) {
+            process.exit(error ? 1 : 0);
+          });
         });
   }
 });
