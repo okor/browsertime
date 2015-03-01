@@ -46,6 +46,7 @@
     "getport": "^0.1.0",
     "minimist": "1.1.x",
     "selenium-webdriver": "2.44.x",
+    "webdrvr": "2.43.0-0",
     "valid-url": "1.0.9",
     "webdriverio": "^2.4.5",
     "whereis": "0.4.x",
