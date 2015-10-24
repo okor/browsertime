@@ -5,7 +5,7 @@ sudo: false
 before_install:
 - firefox --version 2>/dev/null
 - which google-chrome && google-chrome --product-version || true
-- which chromium && chromium --product-version || true
+- which chromium-browser && chromium-browser --product-version || true
 - export DISPLAY=:99.0
 - sh -e /etc/init.d/xvfb start
 script:
