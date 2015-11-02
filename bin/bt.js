@@ -16,6 +16,13 @@ Promise.promisifyAll(fs);
 function run(u, options) {
   options.scripts = scriptParser.parseBrowserScripts(path.resolve(__dirname, '..', 'browserscripts'));
 
+  if (options.preTask) {
+    options.preTask = require(path.resolve(options.preTask));
+  }
+  if (options.postTask) {
+    options.postTask = require(path.resolve(options.postTask));
+  }
+  
   let engine = new Engine(options);
 
   log.info('Running for url: %s', u);
