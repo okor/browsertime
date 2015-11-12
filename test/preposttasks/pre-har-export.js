@@ -8,15 +8,12 @@ module.exports = {
           return driver.executeScript('document.body.style.background = \"#DE640D\"');
         })
         .then(() => {
-          return driver.findElement(webdriver.By.tagName('html')).sendKeys(webdriver.Key.F12);
+          driver.manage().timeouts().implicitlyWait(5);
         })
         .then(() => {
-          return driver.manage().timeouts().implicitlyWait(1);
-        })
-        .then(() => {
+          driver.manage().timeouts().implicitlyWait(5);
           return driver.executeScript('document.body.style.background = \"#FFFFFF\"');
-        });
-
+        })
     });
   }
 };
