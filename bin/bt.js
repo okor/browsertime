@@ -31,6 +31,11 @@ function run(u, options) {
       let browsertimeData = JSON.stringify(result.browsertimeData, null, 2);
       let har = JSON.stringify(result.har, null, 2);
 
+      let ffHar = result.browsertimeData[0].ffHar;
+      if (ffHar) {
+        fs.writeFileSync('ff.har', JSON.stringify(ffHar, null, 2), 'utf8');
+      }
+
       return Promise.all([
         fs.writeFileAsync(options.output, browsertimeData).tap(() => {
             log.info('Wrote browsertime data to %s', options.output);
