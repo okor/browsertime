@@ -31,19 +31,24 @@ function run(u, options) {
       let browsertimeData = JSON.stringify(result.browsertimeData, null, 2);
       let har = JSON.stringify(result.har, null, 2);
 
-      let ffHar = result.browsertimeData[0].ffHar;
-      if (ffHar) {
-        fs.writeFileSync('ff.har', JSON.stringify(ffHar, null, 2), 'utf8');
-      }
-
-      return Promise.all([
+      const fileWriteOperations = [
         fs.writeFileAsync(options.output, browsertimeData).tap(() => {
-            log.info('Wrote browsertime data to %s', options.output);
-          }),
+          log.info('Wrote browsertime data to %s', options.output);
+        }),
         fs.writeFileAsync(options.har, har).tap(() => {
           log.info('Wrote har data to %s', options.har);
         })
-      ]);
+      ];
+
+      let ffHar = result.ffHar;
+      if (ffHar) {
+        fileWriteOperations.push(fs.writeFileAsync('ff.har', har).tap(() => {
+            log.info('Wrote Firefox har data to %s', 'ff.har');
+          })
+        );
+      }
+
+      return Promise.all(fileWriteOperations);
     })
     .catch(function(e) {
       log.error('Error running browsertime ', e);
